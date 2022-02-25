@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flappy Bird JavaScript</title>
+</head>
+<body>
+
+
+<canvas id="canvas" height="400px" width="400px"></canvas>
+<script>
+
+
+
+
+
+
+
+let canvas  = document.getElementById("canvas");
+let ctx = canvas.getContext("2d");
+
+
+let bird = new Image();
+bird.src = "flappy.png";
+
+
+let pipe = new Image();
+pipe.src = "hindernis.png";
+
+
+
+birdX = 150;
+birdY = 75;
+birdSize = 24;
+
+pipeX = 400;
+pipeWidth = 24;
+pipeY = 250;
+pipeGap = 200;
+
+canvas.onclick = () => (birdY -= 50)
+
+setInterval(() => {
+
+ctx.fillStyle = "blue";
+ctx.fillRect(0, 0, canvas.height, canvas.width);
+birdY += 3;
+ctx.drawImage(bird, birdX, birdY, 30, 30);
+ctx.drawImage(pipe, pipeX, 0, 80//Breite
+, 150 //Länge
+);
+ctx.drawImage(pipe, pipeX, pipeY, 80//Breite
+, 150 //Länge
+);
+pipeX -= 8;
+
+if (pipeX < 0){
+    pipeX = 400;
+}
+
+
+
+if((birdY < 150 || birdY > pipeWidth + pipeGap) && pipeX < birdSize * (524/374)) {
+    alert("over");
+};
+
+
+}, 40);
+
+
+</script>
+</body>
+</html>
